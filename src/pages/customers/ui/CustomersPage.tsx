@@ -1,7 +1,8 @@
-import { PageHeader } from '../../../shared/ui/page-header/PageHeader'
 import { CustomerFilters } from '../../../features/customer-filters/ui/CustomerFilters'
 import { CustomerSearch } from '../../../features/customer-filters/ui/CustomerSearch'
+import { PageHeader } from '../../../shared/ui/page-header/PageHeader'
 import { CustomersListTable } from '../../../widgets/customers-list/ui/CustomersListTable'
+import { CustomersSummary } from '../../../widgets/customer-summary/ui/CustomersSummary'
 
 export function CustomersPage() {
     return (
@@ -11,7 +12,9 @@ export function CustomersPage() {
                 description="View customer accounts, subscription plans, and activity."
             />
 
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <CustomersSummary />
+
+            <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
                 <CustomerSearch />
             </div>
 
