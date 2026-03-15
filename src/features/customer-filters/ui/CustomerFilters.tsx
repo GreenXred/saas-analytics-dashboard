@@ -29,8 +29,18 @@ export function CustomerFilters() {
 
     return (
         <Card>
-            <CardContent className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+            <CardContent className="flex flex-col gap-5">
+                <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                        Filters
+                    </span>
+
+                    <Button variant="secondary" size="sm" onClick={resetFilters}>
+                        Reset filters
+                    </Button>
+                </div>
+
+                <div className="flex flex-wrap gap-4">
                     <label className="flex flex-col gap-1">
                         <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                             Status
@@ -67,10 +77,6 @@ export function CustomerFilters() {
                         </select>
                     </label>
                 </div>
-
-                <Button variant="secondary" onClick={resetFilters}>
-                    Reset filters
-                </Button>
             </CardContent>
         </Card>
     )
