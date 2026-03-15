@@ -43,52 +43,66 @@ function CustomersListTableSkeleton() {
                 </div>
             </CardHeader>
 
-            <CardContent className="overflow-x-auto">
-                <table className="min-w-full border-separate border-spacing-0">
-                    <thead>
-                        <tr className="text-left">
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">Customer</th>
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">Plan</th>
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">Status</th>
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">MRR</th>
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">Joined</th>
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">Last active</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {Array.from({ length: 6 }).map((_, index) => (
-                            <tr key={index}>
-                                <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
-                                    <div className="space-y-2">
-                                        <Skeleton className="h-4 w-28" />
-                                        <Skeleton className="h-4 w-40" />
-                                    </div>
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
-                                    <Skeleton className="h-4 w-16" />
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
-                                    <Skeleton className="h-6 w-16 rounded-full" />
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
-                                    <Skeleton className="h-4 w-16" />
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
-                                    <Skeleton className="h-4 w-24" />
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
-                                    <Skeleton className="h-4 w-24" />
-                                </td>
+            <CardContent>
+                <div className="max-h-[520px] overflow-auto">
+                    <table className="min-w-full border-separate border-spacing-0">
+                        <thead>
+                            <tr className="text-left">
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    Customer
+                                </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    Plan
+                                </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    Status
+                                </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    MRR
+                                </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    Joined
+                                </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    Last active
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            {Array.from({ length: 6 }).map((_, index) => (
+                                <tr key={index}>
+                                    <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
+                                        <div className="space-y-2">
+                                            <Skeleton className="h-4 w-28" />
+                                            <Skeleton className="h-4 w-40" />
+                                        </div>
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
+                                        <Skeleton className="h-4 w-16" />
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
+                                        <Skeleton className="h-6 w-16 rounded-full" />
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
+                                        <Skeleton className="h-4 w-16" />
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
+                                        <Skeleton className="h-4 w-24" />
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 dark:border-zinc-800">
+                                        <Skeleton className="h-4 w-24" />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </CardContent>
         </Card>
     )
@@ -111,7 +125,7 @@ function SortableHeader({
         <button
             type="button"
             onClick={() => setSorting(field)}
-            className={`inline-flex items-center gap-1 rounded-md text-sm font-medium transition ${isActive
+            className={`group inline-flex items-center gap-1 rounded-md text-sm font-medium transition ${isActive
                     ? 'text-zinc-900 dark:text-zinc-100'
                     : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
                 }`}
@@ -125,7 +139,7 @@ function SortableHeader({
                     <ArrowDown size={14} />
                 )
             ) : (
-                <ArrowUpDown size={14} />
+                <ArrowUpDown size={14} className="opacity-0 transition group-hover:opacity-100" />
             )}
         </button>
     )
@@ -216,83 +230,84 @@ export function CustomersListTable() {
                         </p>
                     </div>
 
-                    <div className="rounded-xl border border-zinc-200 px-3 py-2 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-                        {sortedCustomers.length} result
-                        {sortedCustomers.length === 1 ? '' : 's'}
+                    <div className="rounded-lg border border-zinc-200 px-2.5 py-1.5 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                        {sortedCustomers.length} result{sortedCustomers.length === 1 ? '' : 's'}
                     </div>
                 </div>
             </CardHeader>
 
-            <CardContent className="overflow-x-auto">
-                <table className="min-w-full border-separate border-spacing-0">
-                    <thead>
-                        <tr className="text-left">
-                            <th className="border-b border-zinc-200 pb-3 pr-4 dark:border-zinc-800">
-                                <SortableHeader label="Customer" field="name" />
-                            </th>
+            <CardContent>
+                <div className="max-h-[520px] overflow-auto">
+                    <table className="min-w-full border-separate border-spacing-0">
+                        <thead>
+                            <tr className="text-left">
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 pr-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    <SortableHeader label="Customer" field="name" />
+                                </th>
 
-                            <th className="border-b border-zinc-200 pb-3 pr-4 dark:border-zinc-800">
-                                <SortableHeader label="Plan" field="plan" />
-                            </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 pr-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    <SortableHeader label="Plan" field="plan" />
+                                </th>
 
-                            <th className="border-b border-zinc-200 pb-3 pr-4 dark:border-zinc-800">
-                                <SortableHeader label="Status" field="status" />
-                            </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 pr-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    <SortableHeader label="Status" field="status" />
+                                </th>
 
-                            <th className="border-b border-zinc-200 pb-3 pr-4 dark:border-zinc-800">
-                                <SortableHeader label="MRR" field="mrr" />
-                            </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 pr-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    <SortableHeader label="MRR" field="mrr" />
+                                </th>
 
-                            <th className="border-b border-zinc-200 pb-3 pr-4 dark:border-zinc-800">
-                                <SortableHeader label="Joined" field="joinedAt" />
-                            </th>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 pr-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    <SortableHeader label="Joined" field="joinedAt" />
+                                </th>
 
-                            <th className="border-b border-zinc-200 pb-3 dark:border-zinc-800">
-                                <SortableHeader label="Last active" field="lastActiveAt" />
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {sortedCustomers.map((customer) => (
-                            <tr key={customer.id}>
-                                <td className="border-b border-zinc-100 py-4 pr-4 dark:border-zinc-800">
-                                    <div>
-                                        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                                            {customer.name}
-                                        </p>
-
-                                        <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                                            {customer.company} · {customer.email}
-                                        </p>
-                                    </div>
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 pr-4 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300">
-                                    {customer.plan}
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 pr-4 dark:border-zinc-800">
-                                    <Badge variant={getStatusVariant(customer.status)}>
-                                        {customer.status}
-                                    </Badge>
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 pr-4 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300">
-                                    {formatCurrency(customer.mrr)}
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 pr-4 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-                                    {formatDate(customer.joinedAt)}
-                                </td>
-
-                                <td className="border-b border-zinc-100 py-4 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-                                    {formatDate(customer.lastActiveAt)}
-                                </td>
+                                <th className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95 pb-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
+                                    <SortableHeader label="Last active" field="lastActiveAt" />
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            {sortedCustomers.map((customer) => (
+                                <tr key={customer.id}>
+                                    <td className="border-b border-zinc-100 py-4 pr-4 dark:border-zinc-800">
+                                        <div>
+                                            <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                                                {customer.name}
+                                            </p>
+
+                                            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                                                {customer.company} · {customer.email}
+                                            </p>
+                                        </div>
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 pr-4 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300">
+                                        {customer.plan}
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 pr-4 dark:border-zinc-800">
+                                        <Badge variant={getStatusVariant(customer.status)}>
+                                            {customer.status}
+                                        </Badge>
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 pr-4 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300">
+                                        {formatCurrency(customer.mrr)}
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 pr-4 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                                        {formatDate(customer.joinedAt)}
+                                    </td>
+
+                                    <td className="border-b border-zinc-100 py-4 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                                        {formatDate(customer.lastActiveAt)}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </CardContent>
         </Card>
     )

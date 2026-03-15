@@ -22,9 +22,9 @@ function CustomersSummarySkeleton() {
 function getSummary(customers: Customer[]) {
     return {
         total: customers.length,
-        active: customers.filter((c) => c.status === 'active').length,
-        trial: customers.filter((c) => c.status === 'trial').length,
-        churned: customers.filter((c) => c.status === 'churned').length,
+        active: customers.filter((customer) => customer.status === 'active').length,
+        trial: customers.filter((customer) => customer.status === 'trial').length,
+        churned: customers.filter((customer) => customer.status === 'churned').length,
     }
 }
 
