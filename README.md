@@ -3,7 +3,7 @@
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![Vite](https://img.shields.io/badge/Vite-Frontend-purple)
-![License](https://img.shields.io/badge/license-MIT-green)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A modern analytics dashboard built with **React + TypeScript** that simulates a real SaaS admin panel.
 
@@ -13,7 +13,7 @@ The project demonstrates a production-style frontend architecture with reusable 
 
 # Live Demo
 
-Coming soon
+https://saas-analytics-dashboard-psi.vercel.app
 
 ---
 
