@@ -73,10 +73,19 @@ export function RetentionChart({ params }: RetentionChartProps) {
         )
     }
 
+    const latestPoint = data[data.length - 1]
+    const latestRetention = latestPoint ? formatPercent(latestPoint.retention) : '0.0%'
+
     return (
         <ChartCard
             title="Retention"
             description="Customer retention performance over time."
+            action={
+                <div className="text-right">
+                    <p className="text-sm font-semibold text-zinc-900">{latestRetention}</p>
+                    <p className="text-xs text-zinc-500">Latest</p>
+                </div>
+            }
         >
             <div className="h-[280px] text-zinc-900">
                 <ResponsiveContainer width="100%" height="100%">

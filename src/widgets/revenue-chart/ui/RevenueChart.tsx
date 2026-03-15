@@ -75,10 +75,22 @@ export function RevenueChart({ params }: RevenueChartProps) {
         )
     }
 
+    const latestPoint = data[data.length - 1]
+    const previousPoint = data[data.length - 2]
+
+    const latestRevenue = latestPoint ? formatCurrency(latestPoint.current) : '$0'
+    const previousRevenue = previousPoint ? formatCurrency(previousPoint.current) : '$0'
+
     return (
         <ChartCard
             title="Revenue trend"
             description="Monthly revenue compared to the previous period."
+            action={
+                <div className="text-right">
+                    <p className="text-sm font-semibold text-zinc-900">{latestRevenue}</p>
+                    <p className="text-xs text-zinc-500">Prev: {previousRevenue}</p>
+                </div>
+            }
         >
             <div className="h-[280px] text-zinc-900">
                 <ResponsiveContainer width="100%" height="100%">

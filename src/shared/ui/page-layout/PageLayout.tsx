@@ -6,7 +6,7 @@ import { AppSidebar } from '../../../widgets/app-sidebar/ui/AppSidebar'
 
 export function PageLayout({ children }: PropsWithChildren) {
     return (
-        <div className="min-h-screen bg-zinc-50 text-zinc-900">
+        <div className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50">
             <div className="flex min-h-screen">
                 <AppSidebar />
 

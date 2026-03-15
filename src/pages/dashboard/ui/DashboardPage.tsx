@@ -4,7 +4,10 @@ import { Button } from '../../../shared/ui/button/Button'
 import { PageHeader } from '../../../shared/ui/page-header/PageHeader'
 import { FiltersBar } from '../../../features/dashboard-filters/ui/FiltersBar'
 import { useDashboardFiltersStore } from '../../../features/dashboard-filters/model/store'
-import { getDateRangeFromSearchParams, getSegmentFromSearchParams } from '../../../features/dashboard-filters/lib/queryParams'
+import {
+    getDateRangeFromSearchParams,
+    getSegmentFromSearchParams,
+} from '../../../features/dashboard-filters/lib/queryParams'
 import { KpiOverview } from '../../../widgets/kpi-overview/ui/KpiOverview'
 import { PlanDistributionChart } from '../../../widgets/plan-distribution/ui/PlanDistributionChart'
 import { RecentCustomersTable } from '../../../widgets/recent-customers/ui/RecentCustomersTable'

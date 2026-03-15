@@ -24,7 +24,12 @@ function RecentCustomersTableSkeleton() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Recent customers</CardTitle>
+                <div className="space-y-1">
+                    <CardTitle>Recent customers</CardTitle>
+                    <p className="text-sm text-zinc-500">
+                        Recently active accounts and subscription status.
+                    </p>
+                </div>
             </CardHeader>
 
             <CardContent className="overflow-x-auto">
@@ -96,8 +101,14 @@ export function RecentCustomersTable() {
         return (
             <Card>
                 <CardHeader>
-                    <CardTitle>Recent customers</CardTitle>
+                    <div className="space-y-1">
+                        <CardTitle>Recent customers</CardTitle>
+                        <p className="text-sm text-zinc-500">
+                            Recently active accounts and subscription status.
+                        </p>
+                    </div>
                 </CardHeader>
+
                 <CardContent>
                     <ErrorState
                         title="Failed to load customers"
@@ -113,8 +124,14 @@ export function RecentCustomersTable() {
         return (
             <Card>
                 <CardHeader>
-                    <CardTitle>Recent customers</CardTitle>
+                    <div className="space-y-1">
+                        <CardTitle>Recent customers</CardTitle>
+                        <p className="text-sm text-zinc-500">
+                            Recently active accounts and subscription status.
+                        </p>
+                    </div>
                 </CardHeader>
+
                 <CardContent>
                     <EmptyState
                         title="No recent customers"
@@ -129,7 +146,12 @@ export function RecentCustomersTable() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Recent customers</CardTitle>
+                <div className="space-y-1">
+                    <CardTitle>Recent customers</CardTitle>
+                    <p className="text-sm text-zinc-500">
+                        Recently active accounts and subscription status.
+                    </p>
+                </div>
             </CardHeader>
 
             <CardContent className="overflow-x-auto">

@@ -12,16 +12,20 @@ export function DateRangeSelect() {
     const setDateRange = useDashboardFiltersStore((state) => state.setDateRange)
 
     return (
-        <select
-            value={dateRange}
-            onChange={(event) => setDateRange(event.target.value as DateRange)}
-            className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900"
-        >
-            {DATE_RANGE_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                    {option.label}
-                </option>
-            ))}
-        </select>
+        <label className="flex flex-col gap-1">
+            <span className="text-xs font-medium text-zinc-500">Date range</span>
+
+            <select
+                value={dateRange}
+                onChange={(event) => setDateRange(event.target.value as DateRange)}
+                className="h-10 min-w-[170px] rounded-xl border border-zinc-200 bg-white px-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-400"
+            >
+                {DATE_RANGE_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </select>
+        </label>
     )
 }
