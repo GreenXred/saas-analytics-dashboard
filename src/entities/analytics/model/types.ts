@@ -1,5 +1,5 @@
-export type DateRange = '7d' | '30d' | '90d' | '12m'
-export type Segment = 'all' | 'sales' | 'marketing' | 'product'
+export type DateRange = '3m' | '6m' | '12m'
+export type Segment = 'all' | 'free' | 'pro' | 'enterprise'
 
 export interface AnalyticsQueryParams {
     dateRange: DateRange
