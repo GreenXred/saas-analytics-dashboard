@@ -9,13 +9,9 @@ A modern analytics dashboard built with **React + TypeScript** that simulates a 
 
 The project demonstrates a production-style frontend architecture with reusable UI components, feature-based structure, state management, data fetching, and interactive charts.
 
----
-
 # Live Demo
 
 https://saas-analytics-dashboard-psi.vercel.app
-
----
 
 # Screenshots
 
@@ -26,8 +22,6 @@ https://saas-analytics-dashboard-psi.vercel.app
 ## Customers
 
 ![Customers](./screenshots/customers.png)
-
----
 
 # Features
 
@@ -56,8 +50,6 @@ https://saas-analytics-dashboard-psi.vercel.app
 - Sticky sidebar navigation
 - Reusable UI components
 
----
-
 # Tech Stack
 
 ### Core
@@ -81,8 +73,6 @@ https://saas-analytics-dashboard-psi.vercel.app
 
 - Recharts
 
----
-
 # Architecture
 
 The project follows a **feature-oriented architecture** inspired by modern frontend practices.
@@ -97,8 +87,6 @@ src/
 ```
 
 This structure helps keep the codebase scalable and maintainable.
-
----
 
 # Getting Started
 
