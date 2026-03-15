@@ -11,36 +11,64 @@ import { useRetentionSeries } from '../../../entities/analytics/api/useRetention
 import type { AnalyticsQueryParams } from '../../../entities/analytics/model/types'
 import { formatPercent } from '../../../shared/lib/formatPercent'
 import { ChartCard } from '../../../shared/ui/chart-card/ChartCard'
+import { EmptyState } from '../../../shared/ui/empty-state/EmptyState'
+import { ErrorState } from '../../../shared/ui/error-state/ErrorState'
+import { Skeleton } from '../../../shared/ui/skeleton/Skeleton'
 
 interface RetentionChartProps {
     params: AnalyticsQueryParams
+}
+
+function RetentionChartSkeleton() {
+    return (
+        <ChartCard
+            title="Retention"
+            description="Customer retention performance over time."
+        >
+            <div className="flex h-[280px] items-end gap-3 rounded-xl bg-zinc-50 p-4">
+                {Array.from({ length: 6 }).map((_, index) => (
+                    <Skeleton
+                        key={index}
+                        className="w-full rounded-md"
+                        style={{ height: `${120 + (index % 4) * 20}px` }}
+                    />
+                ))}
+            </div>
+        </ChartCard>
+    )
 }
 
 export function RetentionChart({ params }: RetentionChartProps) {
     const { data, isLoading, isError } = useRetentionSeries(params)
 
     if (isLoading) {
+        return <RetentionChartSkeleton />
+    }
+
+    if (isError) {
         return (
             <ChartCard
                 title="Retention"
                 description="Customer retention performance over time."
             >
-                <div className="flex h-[280px] items-center justify-center rounded-xl bg-zinc-50 text-sm text-zinc-400">
-                    Loading retention chart...
-                </div>
+                <ErrorState
+                    title="Failed to load retention data"
+                    description="We couldn’t load the retention series for the selected filters."
+                />
             </ChartCard>
         )
     }
 
-    if (isError || !data) {
+    if (!data || data.length === 0) {
         return (
             <ChartCard
                 title="Retention"
                 description="Customer retention performance over time."
             >
-                <div className="flex h-[280px] items-center justify-center rounded-xl bg-rose-50 text-sm text-rose-700">
-                    Failed to load retention data.
-                </div>
+                <EmptyState
+                    title="No retention data"
+                    description="There is no retention data for the selected period."
+                />
             </ChartCard>
         )
     }

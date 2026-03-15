@@ -11,36 +11,66 @@ import { useRevenueSeries } from '../../../entities/analytics/api/useRevenueSeri
 import type { AnalyticsQueryParams } from '../../../entities/analytics/model/types'
 import { formatCurrency } from '../../../shared/lib/formatCurrency'
 import { ChartCard } from '../../../shared/ui/chart-card/ChartCard'
+import { EmptyState } from '../../../shared/ui/empty-state/EmptyState'
+import { ErrorState } from '../../../shared/ui/error-state/ErrorState'
+import { Skeleton } from '../../../shared/ui/skeleton/Skeleton'
 
 interface RevenueChartProps {
     params: AnalyticsQueryParams
+}
+
+function RevenueChartSkeleton() {
+    return (
+        <ChartCard
+            title="Revenue trend"
+            description="Monthly revenue compared to the previous period."
+        >
+            <div className="space-y-4">
+                <div className="flex h-[280px] items-end gap-3 rounded-xl bg-zinc-50 p-4">
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <Skeleton
+                            key={index}
+                            className="w-full rounded-md"
+                            style={{ height: `${40 + (index % 6) * 20}px` }}
+                        />
+                    ))}
+                </div>
+            </div>
+        </ChartCard>
+    )
 }
 
 export function RevenueChart({ params }: RevenueChartProps) {
     const { data, isLoading, isError } = useRevenueSeries(params)
 
     if (isLoading) {
+        return <RevenueChartSkeleton />
+    }
+
+    if (isError) {
         return (
             <ChartCard
                 title="Revenue trend"
                 description="Monthly revenue compared to the previous period."
             >
-                <div className="flex h-[280px] items-center justify-center rounded-xl bg-zinc-50 text-sm text-zinc-400">
-                    Loading revenue chart...
-                </div>
+                <ErrorState
+                    title="Failed to load revenue data"
+                    description="We couldn’t load the revenue series for the selected filters."
+                />
             </ChartCard>
         )
     }
 
-    if (isError || !data) {
+    if (!data || data.length === 0) {
         return (
             <ChartCard
                 title="Revenue trend"
                 description="Monthly revenue compared to the previous period."
             >
-                <div className="flex h-[280px] items-center justify-center rounded-xl bg-rose-50 text-sm text-rose-700">
-                    Failed to load revenue data.
-                </div>
+                <EmptyState
+                    title="No revenue data"
+                    description="There is no revenue data for the selected period."
+                />
             </ChartCard>
         )
     }

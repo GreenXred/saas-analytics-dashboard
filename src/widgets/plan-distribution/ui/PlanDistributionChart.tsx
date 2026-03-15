@@ -2,6 +2,9 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { usePlanDistribution } from '../../../entities/analytics/api/usePlanDistribution'
 import type { AnalyticsQueryParams } from '../../../entities/analytics/model/types'
 import { ChartCard } from '../../../shared/ui/chart-card/ChartCard'
+import { EmptyState } from '../../../shared/ui/empty-state/EmptyState'
+import { ErrorState } from '../../../shared/ui/error-state/ErrorState'
+import { Skeleton } from '../../../shared/ui/skeleton/Skeleton'
 
 interface PlanDistributionChartProps {
     params: AnalyticsQueryParams
@@ -46,31 +49,62 @@ function renderLabel(props: {
     )
 }
 
+function PlanDistributionSkeleton() {
+    return (
+        <ChartCard
+            title="Plan distribution"
+            description="Share of customers by subscription plan."
+        >
+            <div className="flex h-[280px] items-center justify-center rounded-xl bg-zinc-50">
+                <Skeleton className="h-40 w-40 rounded-full" />
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-2">
+                {Array.from({ length: 3 }).map((_, index) => (
+                    <div
+                        key={index}
+                        className="rounded-xl border border-zinc-200 px-3 py-2 text-center"
+                    >
+                        <Skeleton className="mx-auto h-4 w-16" />
+                        <Skeleton className="mx-auto mt-2 h-4 w-10" />
+                    </div>
+                ))}
+            </div>
+        </ChartCard>
+    )
+}
+
 export function PlanDistributionChart({ params }: PlanDistributionChartProps) {
     const { data, isLoading, isError } = usePlanDistribution(params)
 
     if (isLoading) {
+        return <PlanDistributionSkeleton />
+    }
+
+    if (isError) {
         return (
             <ChartCard
                 title="Plan distribution"
                 description="Share of customers by subscription plan."
             >
-                <div className="flex h-[280px] items-center justify-center rounded-xl bg-zinc-50 text-sm text-zinc-400">
-                    Loading plan distribution...
-                </div>
+                <ErrorState
+                    title="Failed to load plan distribution"
+                    description="We couldn’t load the subscription plan breakdown."
+                />
             </ChartCard>
         )
     }
 
-    if (isError || !data) {
+    if (!data || data.length === 0) {
         return (
             <ChartCard
                 title="Plan distribution"
                 description="Share of customers by subscription plan."
             >
-                <div className="flex h-[280px] items-center justify-center rounded-xl bg-rose-50 text-sm text-rose-700">
-                    Failed to load plan distribution.
-                </div>
+                <EmptyState
+                    title="No plan data"
+                    description="There is no plan distribution data for the selected filters."
+                />
             </ChartCard>
         )
     }

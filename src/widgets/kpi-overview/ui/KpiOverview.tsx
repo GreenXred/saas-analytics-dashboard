@@ -1,31 +1,51 @@
-// Виджет, который получает summary-данные через hook и рендерит сетку StatCard
-
 import { useDashboardSummary } from '../../../entities/analytics/api/useDashboardSummary'
 import type { AnalyticsQueryParams } from '../../../entities/analytics/model/types'
 import { formatCurrency } from '../../../shared/lib/formatCurrency'
 import { formatPercent } from '../../../shared/lib/formatPercent'
+import { ErrorState } from '../../../shared/ui/error-state/ErrorState'
+import { Skeleton } from '../../../shared/ui/skeleton/Skeleton'
 import { StatCard } from '../../../shared/ui/stat-card/StatCard'
 
 interface KpiOverviewProps {
     params: AnalyticsQueryParams
 }
 
+function KpiOverviewSkeleton() {
+    return (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                    key={index}
+                    className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm"
+                >
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between gap-3">
+                            <Skeleton className="h-4 w-28" />
+                            <Skeleton className="h-6 w-16 rounded-full" />
+                        </div>
+
+                        <Skeleton className="h-8 w-24" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    )
+}
+
 export function KpiOverview({ params }: KpiOverviewProps) {
     const { data, isLoading, isError } = useDashboardSummary(params)
 
     if (isLoading) {
-        return (
-            <div className="rounded-2xl border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-500">
-                Loading key metrics...
-            </div>
-        )
+        return <KpiOverviewSkeleton />
     }
 
     if (isError || !data) {
         return (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-sm text-rose-700">
-                Failed to load key metrics.
-            </div>
+            <ErrorState
+                title="Failed to load key metrics"
+                description="We couldn’t load the summary metrics for this dashboard."
+                className="min-h-[180px]"
+            />
         )
     }
 
