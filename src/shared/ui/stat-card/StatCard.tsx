@@ -13,10 +13,12 @@ export function StatCard({ label, value, changeText, trend }: StatCardProps) {
     const isPositive = trend === 'up'
 
     return (
-        <Card>
+        <Card className="bg-white dark:bg-zinc-950">
             <CardContent className="space-y-4">
                 <div className="flex items-center justify-between gap-3">
-                    <p className="text-sm font-medium text-zinc-500">{label}</p>
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                        {label}
+                    </p>
 
                     <Badge variant={isPositive ? 'success' : 'danger'}>
                         <span className="flex items-center gap-1">
@@ -27,7 +29,7 @@ export function StatCard({ label, value, changeText, trend }: StatCardProps) {
                 </div>
 
                 <div>
-                    <p className="text-3xl font-semibold tracking-tight text-zinc-900">
+                    <p className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
                         {value}
                     </p>
                 </div>

@@ -5,9 +5,9 @@ import { SegmentSelect } from './SegmentSelect'
 
 export function FiltersBar() {
     return (
-        <Card>
+        <Card className="bg-white dark:bg-zinc-950">
             <CardContent className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex items-center gap-2 text-sm font-medium text-zinc-700">
+                <div className="flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
                     <SlidersHorizontal size={16} />
                     <span>Filters</span>
                 </div>

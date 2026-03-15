@@ -25,7 +25,7 @@ function RetentionChartSkeleton() {
             title="Retention"
             description="Customer retention performance over time."
         >
-            <div className="flex h-[280px] items-end gap-3 rounded-xl bg-zinc-50 p-4">
+            <div className="flex h-[280px] items-end gap-3 rounded-xl bg-zinc-50 p-4 dark:bg-zinc-900">
                 {Array.from({ length: 6 }).map((_, index) => (
                     <Skeleton
                         key={index}
@@ -82,12 +82,14 @@ export function RetentionChart({ params }: RetentionChartProps) {
             description="Customer retention performance over time."
             action={
                 <div className="text-right">
-                    <p className="text-sm font-semibold text-zinc-900">{latestRetention}</p>
-                    <p className="text-xs text-zinc-500">Latest</p>
+                    <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                        {latestRetention}
+                    </p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400">Latest</p>
                 </div>
             }
         >
-            <div className="h-[280px] text-zinc-900">
+            <div className="h-[280px] text-zinc-900 dark:text-zinc-100">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data}>
                         <CartesianGrid vertical={false} strokeDasharray="3 3" />
@@ -108,8 +110,11 @@ export function RetentionChart({ params }: RetentionChartProps) {
                             formatter={(value) => formatPercent(Number(value))}
                             contentStyle={{
                                 borderRadius: 16,
-                                border: '1px solid #e4e4e7',
+                                border: '1px solid #27272a',
+                                backgroundColor: '#09090b',
+                                color: '#fafafa',
                             }}
+                            labelStyle={{ color: '#a1a1aa' }}
                         />
                         <Area
                             type="monotone"

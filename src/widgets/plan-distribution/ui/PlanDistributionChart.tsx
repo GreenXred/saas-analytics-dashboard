@@ -55,7 +55,7 @@ function PlanDistributionSkeleton() {
             title="Plan distribution"
             description="Share of customers by subscription plan."
         >
-            <div className="flex h-[280px] items-center justify-center rounded-xl bg-zinc-50">
+            <div className="flex h-[280px] items-center justify-center rounded-xl bg-zinc-50 dark:bg-zinc-900">
                 <Skeleton className="h-40 w-40 rounded-full" />
             </div>
 
@@ -63,7 +63,7 @@ function PlanDistributionSkeleton() {
                 {Array.from({ length: 3 }).map((_, index) => (
                     <div
                         key={index}
-                        className="rounded-xl border border-zinc-200 px-3 py-2 text-center"
+                        className="rounded-xl border border-zinc-200 px-3 py-2 text-center dark:border-zinc-800"
                     >
                         <Skeleton className="mx-auto h-4 w-16" />
                         <Skeleton className="mx-auto mt-2 h-4 w-10" />
@@ -114,7 +114,7 @@ export function PlanDistributionChart({ params }: PlanDistributionChartProps) {
             title="Plan distribution"
             description="Share of customers by subscription plan."
         >
-            <div className="h-[280px] text-zinc-900">
+            <div className="h-[280px] text-zinc-900 dark:text-zinc-100">
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie
@@ -132,18 +132,27 @@ export function PlanDistributionChart({ params }: PlanDistributionChartProps) {
                             <Cell fill="currentColor" fillOpacity={0.35} />
                         </Pie>
 
-                        <Tooltip formatter={(value) => `${value}%`} />
+                        <Tooltip
+                            formatter={(value) => `${value}%`}
+                            contentStyle={{
+                                borderRadius: 16,
+                                border: '1px solid #27272a',
+                                backgroundColor: '#09090b',
+                                color: '#fafafa',
+                            }}
+                            labelStyle={{ color: '#a1a1aa' }}
+                        />
                     </PieChart>
                 </ResponsiveContainer>
             </div>
 
-            <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-zinc-500">
+            <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-zinc-500 dark:text-zinc-400">
                 {data.map((item) => (
                     <div
                         key={item.plan}
-                        className="rounded-xl border border-zinc-200 px-3 py-2 text-center"
+                        className="rounded-xl border border-zinc-200 px-3 py-2 text-center dark:border-zinc-800"
                     >
-                        <p className="font-medium text-zinc-900">{item.plan}</p>
+                        <p className="font-medium text-zinc-900 dark:text-zinc-100">{item.plan}</p>
                         <p>{item.value}%</p>
                     </div>
                 ))}

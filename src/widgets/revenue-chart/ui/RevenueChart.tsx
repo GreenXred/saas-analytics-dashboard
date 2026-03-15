@@ -26,7 +26,7 @@ function RevenueChartSkeleton() {
             description="Monthly revenue compared to the previous period."
         >
             <div className="space-y-4">
-                <div className="flex h-[280px] items-end gap-3 rounded-xl bg-zinc-50 p-4">
+                <div className="flex h-[280px] items-end gap-3 rounded-xl bg-zinc-50 p-4 dark:bg-zinc-900">
                     {Array.from({ length: 12 }).map((_, index) => (
                         <Skeleton
                             key={index}
@@ -87,12 +87,16 @@ export function RevenueChart({ params }: RevenueChartProps) {
             description="Monthly revenue compared to the previous period."
             action={
                 <div className="text-right">
-                    <p className="text-sm font-semibold text-zinc-900">{latestRevenue}</p>
-                    <p className="text-xs text-zinc-500">Prev: {previousRevenue}</p>
+                    <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                        {latestRevenue}
+                    </p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                        Prev: {previousRevenue}
+                    </p>
                 </div>
             }
         >
-            <div className="h-[280px] text-zinc-900">
+            <div className="h-[280px] text-zinc-900 dark:text-zinc-100">
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={data}>
                         <CartesianGrid vertical={false} strokeDasharray="3 3" />
@@ -113,8 +117,11 @@ export function RevenueChart({ params }: RevenueChartProps) {
                             formatter={(value) => formatCurrency(Number(value))}
                             contentStyle={{
                                 borderRadius: 16,
-                                border: '1px solid #e4e4e7',
+                                border: '1px solid #27272a',
+                                backgroundColor: '#09090b',
+                                color: '#fafafa',
                             }}
+                            labelStyle={{ color: '#a1a1aa' }}
                         />
                         <Line
                             type="monotone"

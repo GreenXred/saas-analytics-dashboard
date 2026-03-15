@@ -22,11 +22,14 @@ export function PageHeader({
             )}
         >
             <div className="space-y-1">
-                <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">
+                <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
                     {title}
                 </h1>
+
                 {description ? (
-                    <p className="text-sm text-zinc-500">{description}</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                        {description}
+                    </p>
                 ) : null}
             </div>
 

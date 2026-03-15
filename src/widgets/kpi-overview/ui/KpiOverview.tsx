@@ -16,7 +16,15 @@ function KpiOverviewSkeleton() {
             {Array.from({ length: 4 }).map((_, index) => (
                 <div
                     key={index}
-                    className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm"
+                    className="
+                        rounded-2xl 
+                        border 
+                        border-zinc-200 
+                        bg-white 
+                        p-6 
+                        shadow-sm 
+                        dark:border-zinc-800 
+                        dark:bg-zinc-950"
                 >
                     <div className="space-y-4">
                         <div className="flex items-center justify-between gap-3">

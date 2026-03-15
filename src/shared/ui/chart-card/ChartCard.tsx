@@ -20,7 +20,7 @@ export function ChartCard({
     children,
 }: ChartCardProps) {
     return (
-        <Card className="h-full">
+        <Card className="h-full bg-white dark:bg-zinc-950">
             <CardHeader>
                 <div className="space-y-1">
                     <CardTitle>{title}</CardTitle>
