@@ -18,20 +18,19 @@ function renderLabel(props: {
     outerRadius?: number
     percent?: number
 }) {
-    const { cx, cy, midAngle, innerRadius, outerRadius, percent } = props
+    const { cx, cy, midAngle, outerRadius, percent } = props
 
     if (
         cx === undefined ||
         cy === undefined ||
         midAngle === undefined ||
-        innerRadius === undefined ||
         outerRadius === undefined ||
         percent === undefined
     ) {
         return null
     }
 
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5
+    const radius = outerRadius + 18
     const x = cx + radius * Math.cos((-midAngle * Math.PI) / 180)
     const y = cy + radius * Math.sin((-midAngle * Math.PI) / 180)
 
